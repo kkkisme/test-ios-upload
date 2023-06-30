@@ -1,8 +1,17 @@
 <script setup>
 
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
 
 const res = ref()
+
+
+onMounted(() => {
+  navigator.geolocation.getCurrentPosition((info) => {
+    console.log('mounted success get', info)
+  }, (err) => {
+    console.log('mounted fail', err)
+  })
+})
 
 const clickButton = () => {
   console.log('btn1 click', res.value)
