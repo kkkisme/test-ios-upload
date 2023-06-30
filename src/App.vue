@@ -6,18 +6,20 @@ const res = ref()
 
 onMounted(() => {
   document.body.addEventListener('click', () => {
-    console.log(res.value)
+    console.log('body click', res.value)
   })
 })
 
 const handleUpload = () => {
   console.log('start get loc')
-  navigator.geolocation.getCurrentPosition((info) => {
-    console.log('success get', info)
-    res.value = info
-  }, (err) => {
-    console.log('fail', err)
-  })
+  setTimeout(() => {
+    navigator.geolocation.getCurrentPosition((info) => {
+      console.log('success get', info)
+      res.value = info
+    }, (err) => {
+      console.log('fail', err)
+    })
+  }, 200)
 }
 </script>
 
