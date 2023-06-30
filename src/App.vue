@@ -1,14 +1,19 @@
 <script setup>
 
-import {onMounted, ref} from 'vue'
+import {ref} from 'vue'
 
 const res = ref()
 
-onMounted(() => {
-  document.body.addEventListener('click', () => {
-    console.log('body click', res.value)
+const clickButton = () => {
+  console.log('body click', res.value)
+}
+const clickButton2 = () => {
+  navigator.geolocation.getCurrentPosition((info) => {
+    console.log('btn success get', info)
+  }, (err) => {
+    console.log('btn fail', err)
   })
-})
+}
 
 const handleUpload = () => {
   console.log('start get loc')
@@ -24,9 +29,9 @@ const handleUpload = () => {
 </script>
 
 <template>
-  <van-uploader @click-upload="handleUpload" capture="true">
-
-  </van-uploader>
+  <van-button @click="clickButton">btn1</van-button>
+  <van-button @click="clickButton2">btn2</van-button>
+  <van-uploader @click-upload="handleUpload" capture="true"></van-uploader>
 </template>
 
 <style scoped>
