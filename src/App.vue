@@ -11,10 +11,12 @@ onMounted(() => {
 })
 
 const handleUpload = () => {
+  console.log('start get loc')
   navigator.geolocation.getCurrentPosition((info) => {
+    console.log('success get', info)
     res.value = info
   }, (err) => {
-    console.log(err)
+    console.log('fail', err)
   })
 }
 </script>
